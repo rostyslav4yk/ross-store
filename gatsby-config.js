@@ -1,6 +1,10 @@
 /**
  * @type {import('gatsby').GatsbyConfig}
  */
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
+
 module.exports = {
   siteMetadata: {
     title: `Ross-Store`,
@@ -15,8 +19,8 @@ module.exports = {
     {
       resolve: 'gatsby-source-datocms',
       options: {
-        "apiToken": "f8c75606fc23fb14d3ff369c8a09c1"
-      }
+        apiToken: process.env.API_KEY,
+      },
     }, 
     {
     resolve: 'gatsby-plugin-manifest',
