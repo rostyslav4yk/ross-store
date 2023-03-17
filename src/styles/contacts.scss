@@ -1,0 +1,57 @@
+.contact-wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.contact-wrapper > div {
+    width: calc(50% - 15px);
+}
+
+form > div {
+    margin-bottom: 15px;
+}
+
+.form-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.container > p {
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+button {
+    padding: 10px 25px;
+    border: 1px solid rebeccapurple;
+    color: rebeccapurple;
+    border-radius: 5px;
+    font-size: 16px;
+
+    &:hover {
+        background: rebeccapurple;
+        color: #fff;
+    }
+}
+
+label {
+    display: block;
+}
+
+input, textarea {
+    padding: 10px 25px;
+    border: 1px solid rebeccapurple;
+    color: rebeccapurple;
+    border-radius: 5px;
+    width: 100%;
+}
+
+textarea {
+    resize: none;
+    height: 300px;
+}
+
+.leaflet-control-container {
+    display: none   ;
+}

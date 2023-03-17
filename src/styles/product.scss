@@ -1,0 +1,23 @@
+.product-item {
+    img {
+        max-width: 500px;
+        margin: 0 auto;
+        display: block;
+    }
+    
+    .price {
+        text-align: center;
+        margin: 15px 0;
+    }
+    
+    .price span {
+        margin-left: 5px;
+        font-size: 18px;
+        font-weight: bold;
+    } 
+    
+    h4 {
+        font-size: 18px;
+        font-weight: bold;
+    }
+}

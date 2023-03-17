@@ -26,7 +26,7 @@ const Layout = ({ pageTitle, children }) => {
             <header>
                 <div className="container">
                     <div>
-                        <Link to="/" className="logo">
+                        <Link to="" className="logo">
                             <StaticImage
                                 alt="Logo"
                                 src="../images/logo.png"
@@ -38,7 +38,7 @@ const Layout = ({ pageTitle, children }) => {
                         <ul className="nav-links">
                             {result.datoCmsMenu.menuItems.map(menuItem => (
                                 <li key={menuItem.originalId} className="nav-link-item">
-                                    <Link to={menuItem.destination.slug} className="nav-link-text">
+                                    <Link to={`${menuItem.destination.slug}`} className="nav-link-text">
                                         {menuItem.labelText}
                                     </Link>
                                 </li>
@@ -61,7 +61,7 @@ const Layout = ({ pageTitle, children }) => {
             <footer>
                 <div className="container">
                     <div>
-                        <Link to="/" className="logo">
+                        <Link to="" className="logo">
                             <StaticImage
                                 alt="Logo"
                                 src="../images/logo.png"
@@ -73,7 +73,7 @@ const Layout = ({ pageTitle, children }) => {
                         <ul className="nav-links">
                             {result.datoCmsMenu.menuItems.map(menuItem => (
                                 <li key={menuItem.originalId} className="nav-link-item">
-                                    <Link to={menuItem.destination.slug} className="nav-link-text">
+                                    <Link to={`${menuItem.destination.slug}`} className="nav-link-text">
                                         {menuItem.labelText}
                                     </Link>
                                 </li>

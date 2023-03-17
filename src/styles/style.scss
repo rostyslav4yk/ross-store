@@ -1,15 +1,30 @@
 @import "reset";
 
+body {
+  font-size: 16px;
+}
+
+a, button {
+  transition: .3s;
+  cursor: pointer;
+  background: transparent;
+  font-size: 1rem;
+}
+
+a:focus, button:focus {
+  outline: none;
+}
+
 .container {
-    margin: auto;
-    max-width: 1200px;
-    font-family: sans-serif;
-  }
+  margin: auto;
+  max-width: 1200px;
+  font-family: sans-serif;
+}
   
-  .heading {
-    color: rebeccapurple;
-    text-align: center;
-    margin-bottom: 1rem;
-    font-size: 3rem;
-    font-weight: 600;
-  }
+.heading {
+  color: rebeccapurple;
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 3rem;
+  font-weight: 600;
+}

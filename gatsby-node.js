@@ -1,27 +1,30 @@
-exports.createPages = async({actions, graphql}) => {
-    const {createPage} = actions;
-    
+const path = require("path");
+
+exports.createPages = async ({ graphql, actions }) => {
+    const { createPage } = actions
+
+    const productTemplate = path.resolve(`src/pages/product.js`)
+
     const result = await graphql(`
-        {
-            allDatoCmsPage {
-                nodes {
-                  title
-                  slug
-                  originalId
-                }
-            }
+      query {
+        allDatoCmsProduct {
+          nodes {
+            id
+            slug
+            originalId
+          }
         }
+      }
     `)
-
-    console.log(result)
-
-    result.data.allDatoCmsPage.nodes.forEach(page => {
-        createPage({
-            path: `/${page.slug === "index" ? "" : page.slug}`,
-            component: require.resolve("./src/components/layout.js"),
-            context: {
-                id: page.originalId
-            },
-        })
-    });
-}
+  
+    result.data.allDatoCmsProduct.nodes.forEach(node => {
+      createPage({
+        path: `/pages/${node.slug}`,
+        component: productTemplate,
+        context: {
+          productId: node.originalId,
+        },
+      })
+    })
+  }
+  
