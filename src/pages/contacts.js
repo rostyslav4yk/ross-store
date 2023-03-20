@@ -16,7 +16,7 @@ const ContactsPage = props => {
             <div className="contact-wrapper">
                 <div>
                     <p>
-                        Phone number
+                        {props.data.datoCmsContactPage.phoneTitle}
                     </p>
 
                     <a href={`tel:${props.data.datoCmsContactPage.phoneNumber}`}>
@@ -43,6 +43,7 @@ export const query = graphql`
         datoCmsContactPage {
             title
             contactText
+            phoneTitle
             phoneNumber
             location {
                 latitude

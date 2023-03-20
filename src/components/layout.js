@@ -45,6 +45,16 @@ const Layout = ({ pageTitle, children }) => {
                             ))}
                         </ul>
                     </nav>
+
+                    <ul className='language'>
+                        <li className='active'>
+                            <a href='#'>En</a>
+                        </li>
+
+                        <li>
+                            <a href='#'>Urk</a>
+                        </li>
+                    </ul>
                 </div>
             </header>
                 

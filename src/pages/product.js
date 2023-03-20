@@ -14,14 +14,14 @@ const ProductTemplate = props => {
                 />
 
                 <p className="price">
-                    Price:
+                    {props.data.datoCmsProduct.priceTitle}
                     <span>
                         {props.data.datoCmsProduct.price}
                     </span>
                 </p>
 
                 <h4>
-                    Description
+                    {props.data.datoCmsProduct.descriptionTitle}
                 </h4>
 
                 <p>
@@ -40,7 +40,9 @@ export const query = graphql`
                 url
                 alt
             }
+            descriptionTitle
             description
+            priceTitle
             price
             originalId
         }
