@@ -1,8 +1,8 @@
 import * as React from 'react';
-import Layout from '../components/layout';
+import Layout from '../../components/layout';
 import { graphql, Link } from 'gatsby';
-import Seo from '../components/seo';
-import '../styles/catalog.scss';
+import Seo from '../../components/seo';
+import '../../styles/catalog.scss';
 
 const CatalogPage = ({data}) => {
     return (
@@ -12,14 +12,23 @@ const CatalogPage = ({data}) => {
             {data.allDatoCmsProduct.nodes.map(productItem => (
                 <article key={productItem.id} className="product-item">
                     <Link to={`/pages/${productItem.slug}`} className="nav-link-text"></Link>
-                    <h2>{productItem.title}</h2>
-                    <p>{productItem.originalId}</p>
+                    
+                    <h2>
+                      {productItem.title}
+                    </h2>
+
+                    <p>
+                      {productItem.originalId}
+                    </p>
+
                     <img
                         alt={productItem.image.alt}
                         src={productItem.image.url}
                     />
+
                     <p className="price"> 
                       Price 
+
                       <span>
                         ${productItem.price}
                       </span>

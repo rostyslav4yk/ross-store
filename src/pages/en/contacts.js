@@ -1,11 +1,11 @@
 import * as React from 'react';
-import Layout from '../components/layout';
-import Seo from '../components/seo';
+import Layout from '../../components/layout';
+import Seo from '../../components/seo';
 import { graphql } from 'gatsby';
-import { ContactForm } from '../components/contactForm';
-import CompanyMap from '../components/companyMap';
-import '../styles/style.scss';
-import '../styles/contacts.scss';
+import { ContactForm } from '../../components/contactForm';
+import CompanyMap from '../../components/companyMap';
+import '../../styles/style.scss';
+import '../../styles/contacts.scss';
 
 const ContactsPage = props => {
     const center = [props.data.datoCmsContactPage.location.latitude, props.data.datoCmsContactPage.location.longitude];
@@ -40,7 +40,7 @@ const ContactsPage = props => {
 
 export const query = graphql`   
     query ContactQuery {
-        datoCmsContactPage {
+        datoCmsContactPage(locale: "en") {
             title
             contactText
             phoneTitle

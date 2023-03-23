@@ -2,6 +2,8 @@ import * as React from 'react';
 import {graphql, useStaticQuery } from 'gatsby';
 import { StaticImage } from 'gatsby-plugin-image';
 import Link from './link';
+import LanguageSwitcher from './languageSwitcher';
+import Menu from './menu';
 import '../styles/style.scss';
 import '../styles/header.scss';
 import '../styles/footer.scss';
@@ -35,26 +37,12 @@ const Layout = ({ pageTitle, children }) => {
                     </div>
 
                     <nav>
-                        <ul className="nav-links">
-                            {result.datoCmsMenu.menuItems.map(menuItem => (
-                                <li key={menuItem.originalId} className="nav-link-item">
-                                    <Link to={`${menuItem.destination.slug}`} className="nav-link-text">
-                                        {menuItem.labelText}
-                                    </Link>
-                                </li>
-                            ))}
-                        </ul>
+                       <Menu></Menu>
                     </nav>
 
-                    <ul className='language'>
-                        <li className='active'>
-                            <a href='#'>En</a>
-                        </li>
-
-                        <li>
-                            <a href='#'>Urk</a>
-                        </li>
-                    </ul>
+                    <div>
+                        <LanguageSwitcher></LanguageSwitcher>
+                    </div>
                 </div>
             </header>
                 
