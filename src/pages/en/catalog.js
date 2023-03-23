@@ -43,7 +43,7 @@ const CatalogPage = ({data}) => {
 
 export const query = graphql`
 {
-  allDatoCmsProduct {
+  allDatoCmsProduct(locale: "en") {
     nodes {
       id
       originalId

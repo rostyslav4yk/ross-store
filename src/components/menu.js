@@ -3,7 +3,6 @@ import { graphql, useStaticQuery, Link } from 'gatsby';
 
 const Menu = () => {
   const lang = window.location.pathname === "/en/" ? "en" : "uk"
-  
   const data = useStaticQuery(graphql`
     {
       enMenu: datoCmsMenu(locale: "en") {
@@ -33,7 +32,7 @@ const Menu = () => {
     <ul className="nav-links">
       {menuItems.map(menuItem => (
         <li key={menuItem.originalId} className="nav-link-item">
-          <Link to={`http://localhost:8000/${lang}/${menuItem.destination.slug}`} className="nav-link-text">
+          <Link to={`${menuItem.destination.slug}`} className="nav-link-text">
             {menuItem.labelText}
           </Link>
         </li>

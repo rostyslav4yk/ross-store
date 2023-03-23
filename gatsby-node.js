@@ -1,32 +1,33 @@
 const path = require("path");
 
 exports.createPages = async ({ graphql, actions }) => {
-    const { createPage } = actions
+  const { createPage } = actions
 
-    const lang = window.location.pathname === "/en/" ? "en" : "uk"
-
-    const productTemplate = path.resolve(`src/pages/${lang}/product.js`)
-
-    const result = await graphql(`
-      query {
-        allDatoCmsProduct {
-          nodes {
-            id
-            slug
-            originalId
-          }
+  const result = await graphql(`
+    query {
+      allDatoCmsProduct {
+        nodes {
+          locales
+          title
+          id
+          originalId
+          slug
         }
       }
-    `)
-  
-    result.data.allDatoCmsProduct.nodes.forEach(node => {
+    }
+  `)
+
+
+  result.data.allDatoCmsProduct.nodes.forEach(node => {
+    node.locales.forEach(locale => {
       createPage({
-        path: `/pages/${lang}/${node.slug}`,
-        component: productTemplate,
+        path: `${locale}/${node.slug}`,
+        component:  path.resolve(`src/pages/${locale}/product.js`),
         context: {
           productId: node.originalId,
         },
       })
     })
-  }
+  })
+}
   

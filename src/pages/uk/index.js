@@ -8,7 +8,7 @@ const IndexPage = () => {
   return (
     <Layout pageTitle="Welcome to RoSS store">
       <div>
-        Move to out <Link to="/catalog">catalog</Link>
+        Запрошую до свого <Link to="/catalog">каталогу</Link>
       </div>
     </Layout>
   )
