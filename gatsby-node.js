@@ -17,12 +17,11 @@ exports.createPages = async ({ graphql, actions }) => {
     }
   `)
 
-
   result.data.allDatoCmsProduct.nodes.forEach(node => {
     node.locales.forEach(locale => {
       createPage({
-        path: `${locale}/${node.slug}`,
-        component:  path.resolve(`src/pages/${locale}/product.js`),
+        path: `${locale}/catalog/${node.slug}`,
+        component: require.resolve(`./src/pages/${locale}/product.js`),
         context: {
           productId: node.originalId,
         },

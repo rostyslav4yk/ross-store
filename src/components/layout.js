@@ -8,62 +8,63 @@ import '../styles/header.scss';
 import '../styles/footer.scss';
 
 const Layout = ({ pageTitle, children }) => {
+  const { pathname } = window.location
 
-    return (
-        <div>
-            <header>
-                <div className="container">
-                    <div>
-                        <Link to="" className="logo">
-                            <StaticImage
-                                alt="Logo"
-                                src="../images/logo.png"
-                            />
-                        </Link>
-                    </div>
+  return (
+    <div>
+      <header>
+        <div className="container">
+          <div>
+            <Link to="" className="logo">
+              <StaticImage
+                alt="Logo"
+                src="../images/logo.png"
+              />
+            </Link>
+          </div>
 
-                    <nav>
-                       <Menu></Menu>
-                    </nav>
+          <nav>
+            <Menu />
+          </nav>
 
-                    <div>
-                        <LanguageSwitcher></LanguageSwitcher>
-                    </div>
-                </div>
-            </header>
-                
-            <main>
-                <div className="container">
-                    <h1 className="heading">
-                        {pageTitle}
-                    </h1>
-
-                    {children}
-                </div>
-            </main>
-
-            <footer>
-                <div className="container">
-                    <div>
-                        <Link to="" className="logo">
-                            <StaticImage
-                                alt="Logo"
-                                src="../images/logo.png"
-                            />
-                        </Link>
-                    </div>
-
-                    <nav>
-                       <Menu></Menu>
-                    </nav>
-
-                    <div>
-                        <LanguageSwitcher></LanguageSwitcher>
-                    </div>
-                </div>
-            </footer>
+          <div>
+            <LanguageSwitcher currentLocale={pathname} />
+          </div>
         </div>
-    )
+      </header>
+
+      <main>
+        <div className="container">
+          <h1 className="heading">
+            {pageTitle}
+          </h1>
+
+          {children}
+        </div>
+      </main>
+
+      <footer>
+        <div className="container">
+          <div>
+            <Link to="" className="logo">
+              <StaticImage
+                alt="Logo"
+                src="../images/logo.png"
+              />
+            </Link>
+          </div>
+
+          <nav>
+            <Menu />
+          </nav>
+
+          <div>
+            <LanguageSwitcher currentLocale={pathname} />
+          </div>
+        </div>
+      </footer>
+    </div>
+  )
 }
 
-export default Layout
+export default Layout;

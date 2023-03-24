@@ -6,9 +6,9 @@ import { Link } from 'gatsby';
 const IndexPage = () => {
   
   return (
-    <Layout pageTitle="Welcome to RoSS store">
+    <Layout pageTitle="Вітаю Вас в магазині RoSS">
       <div>
-        Запрошую до свого <Link to="/catalog">каталогу</Link>
+        Запрошую до свого <Link to='/uk/catalog'>каталогу</Link>
       </div>
     </Layout>
   )
