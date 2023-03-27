@@ -1,17 +1,23 @@
-import React from "react"
-import { Link } from "gatsby"
+import * as React from 'react';
+import { Link } from 'gatsby';
+import { useLocation } from '@reach/router';
 
 const LanguageSwitcher = ({ currentLocale }) => {
-  const { pathname } = window.location
-  const newPathname = pathname.replace(/^\/(en|uk)\//, '');
+  const location = useLocation();
+  const [newPathname, setNewPathname] = React.useState('');
+
+  React.useEffect(() => {
+    const pathname = location.pathname;
+    setNewPathname(pathname.replace(/^\/(en|uk)\//, ''));
+  }, [location.pathname]);
 
   return (
-    <ul>
+    <ul className="language">
       <li>
         <Link
           to={`/en/${newPathname}`}
           language="en"
-          className={currentLocale === "/en/" ? "active" : ""}
+          className={currentLocale === '/en/' ? 'active' : ''}
         >
           English
         </Link>
@@ -20,13 +26,13 @@ const LanguageSwitcher = ({ currentLocale }) => {
         <Link
           to={`/uk/${newPathname}`}
           language="uk"
-          className={currentLocale === "/uk/" ? "active" : ""}
+          className={currentLocale === '/uk/' ? 'active' : ''}
         >
           Українська
         </Link>
       </li>
     </ul>
-  )
-}
+  );
+};
 
-export default LanguageSwitcher
+export default LanguageSwitcher;

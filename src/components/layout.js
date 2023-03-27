@@ -6,9 +6,10 @@ import Menu from './menu';
 import '../styles/style.scss';
 import '../styles/header.scss';
 import '../styles/footer.scss';
+import { useLocation } from '@reach/router';
 
 const Layout = ({ pageTitle, children }) => {
-  const { pathname } = window.location
+  const location = useLocation();
 
   return (
     <div>
@@ -16,10 +17,7 @@ const Layout = ({ pageTitle, children }) => {
         <div className="container">
           <div>
             <Link to="" className="logo">
-              <StaticImage
-                alt="Logo"
-                src="../images/logo.png"
-              />
+              <StaticImage alt="Logo" src="../images/logo.png" />
             </Link>
           </div>
 
@@ -28,16 +26,14 @@ const Layout = ({ pageTitle, children }) => {
           </nav>
 
           <div>
-            <LanguageSwitcher currentLocale={pathname} />
+            <LanguageSwitcher currentLocale={location.pathname} />
           </div>
         </div>
       </header>
 
       <main>
         <div className="container">
-          <h1 className="heading">
-            {pageTitle}
-          </h1>
+          <h1 className="heading">{pageTitle}</h1>
 
           {children}
         </div>
@@ -47,10 +43,7 @@ const Layout = ({ pageTitle, children }) => {
         <div className="container">
           <div>
             <Link to="" className="logo">
-              <StaticImage
-                alt="Logo"
-                src="../images/logo.png"
-              />
+              <StaticImage alt="Logo" src="../images/logo.png" />
             </Link>
           </div>
 
@@ -59,12 +52,12 @@ const Layout = ({ pageTitle, children }) => {
           </nav>
 
           <div>
-            <LanguageSwitcher currentLocale={pathname} />
+            <LanguageSwitcher currentLocale={location.pathname} />
           </div>
         </div>
       </footer>
     </div>
-  )
-}
+  );
+};
 
 export default Layout;

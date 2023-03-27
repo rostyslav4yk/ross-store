@@ -13,21 +13,18 @@
         margin-left: 0.5rem;
       }
     }
-    
-    .active {
-      border: 1px solid rebeccapurple;
-      border-radius: 3px;
-
-      a {
-        color: rebeccapurple;
-        pointer-events: none;
-      }
-    }
 
     a {
       text-decoration: none;
       font-size: 0.75rem;
       padding: 0.5rem;
       color: #000;
+
+      &.active {
+        border: 1px solid rebeccapurple;
+        border-radius: 3px;
+        color: rebeccapurple;
+        pointer-events: none;
+      }
     }
   }
