@@ -21,7 +21,7 @@ exports.createPages = async ({ graphql, actions }) => {
     node.locales.forEach(locale => {
       createPage({
         path: `${locale}/catalog/${node.slug}`,
-        component: require.resolve(`./src/pages/${locale}/product.js`),
+        component: path.resolve(`src/pages/${locale}/product.js`),
         context: {
           productId: node.originalId,
         },
@@ -29,4 +29,3 @@ exports.createPages = async ({ graphql, actions }) => {
     })
   })
 }
-  

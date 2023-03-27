@@ -19,9 +19,10 @@
     "gatsby-link": "^5.8.0",
     "gatsby-plugin-image": "^3.7.0",
     "gatsby-plugin-manifest": "^5.7.0",
+    "gatsby-plugin-robots-txt": "^1.8.0",
     "gatsby-plugin-sass": "^6.7.0",
     "gatsby-plugin-sharp": "^5.7.0",
-    "gatsby-plugin-sitemap": "^6.7.0",
+    "gatsby-plugin-sitemap": "^6.8.0",
     "gatsby-source-datocms": "^5.0.4",
     "gatsby-source-filesystem": "^5.7.0",
     "gatsby-transformer-sharp": "^5.7.0",
@@ -29,7 +30,6 @@
     "react-datocms": "^4.0.9",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.43.5",
-    "react-leaflet": "^4.2.1",
     "sass": "^1.59.2"
   }
 }

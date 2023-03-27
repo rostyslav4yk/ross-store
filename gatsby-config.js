@@ -7,6 +7,7 @@ module.exports = {
     title: `Ross-Store`,
     siteUrl: `https://www.yourdomain.tld`,
   },
+  pathPrefix: '/',
   plugins: [
     "gatsby-plugin-image",
     "gatsby-plugin-sharp",
