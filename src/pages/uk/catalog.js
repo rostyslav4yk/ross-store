@@ -2,10 +2,13 @@ import * as React from 'react';
 import Layout from '../../components/layout';
 import { graphql, Link  } from 'gatsby';
 import Seo from '../../components/seo';
+import { useLocation } from '@reach/router';
 import '../../styles/catalog.scss';
 
 const CatalogPage = ({data}) => {
+  const { pathname } = useLocation();
 
+  const lang = pathname.startsWith("/en/") ? "en" : "uk";
 
   return (
     <Layout pageTitle="Каталог">
@@ -13,7 +16,7 @@ const CatalogPage = ({data}) => {
         <div className='catalog-wrapper'>
           {data.allDatoCmsProduct.nodes.map(productItem => (
               <article key={productItem.id} className="product-item">
-                  <Link to={`/${productItem.locales[0]}/catalog/${productItem.slug}`} className="nav-link-text"></Link>
+                  <Link to={`/${lang}/catalog/${productItem.slug}`} className="nav-link-text"></Link>
                   
                   <h2>
                     {productItem.title}
