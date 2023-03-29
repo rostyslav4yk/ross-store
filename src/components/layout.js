@@ -49,7 +49,7 @@ const Layout = ({ pageTitle, children }) => {
       <footer>
         <div className="container">
           <div>
-            <Link to="" className="logo">
+            <Link to={`${newPathname}`} className="logo">
               <StaticImage alt="Logo" src="../images/logo.png" />
             </Link>
           </div>
