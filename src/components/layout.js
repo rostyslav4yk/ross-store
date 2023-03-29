@@ -10,13 +10,20 @@ import { useLocation } from '@reach/router';
 
 const Layout = ({ pageTitle, children }) => {
   const location = useLocation();
-
+  const [newPathname, setNewPathname] = React.useState('');
+  
+  React.useEffect(() => {
+    const pathname = location.pathname;
+    setNewPathname(pathname.split('/')[1]);
+    console.log(pathname.split('/')[1])
+  }, [location.pathname]);
+  
   return (
     <div>
       <header>
         <div className="container">
           <div>
-            <Link to="" className="logo">
+            <Link to={`${newPathname}`} className="logo">
               <StaticImage alt="Logo" src="../images/logo.png" />
             </Link>
           </div>

@@ -11,6 +11,7 @@ const LanguageSwitcher = ({ currentLocale }) => {
     setNewPathname(pathname.replace(/^\/(en|uk)\//, ''));
   }, [location.pathname]);
 
+
   return (
     <ul className="language">
       <li>
