@@ -6,8 +6,8 @@ import { Link } from 'gatsby-link';
 const Menu = () => {
   const { pathname } = useLocation();
 
-  const lang = pathname.startsWith("/en/") ? "en" : "uk";
-  const isHomePage = pathname === "/" || pathname === `/${lang}/index`;
+  const lang = pathname.startsWith("/uk/") ? "uk" : "en";
+  const isHomePage = pathname === `/${lang}/` || pathname === `/${lang}/index`;
 
   const data = useStaticQuery(graphql`
     {
@@ -36,19 +36,25 @@ const Menu = () => {
 
   return (
     <ul className="nav-links">
-      {menuItems.map((menuItem) => (
-        <li key={menuItem.originalId} className="nav-link-item">
-          <Link
-            to={isHomePage ? `/${lang}/` : `/${lang}/${menuItem.destination.slug.replace("index", "")}`}
+      {menuItems.map((menuItem) => {
+        const linkDestination =
+          menuItem.destination.slug === "index"
+            ? isHomePage
+              ? `/${lang}/`
+              : `${lang === "en" ? "" : `/${lang}`}/`
+            : `${lang === "en" ? "" : `/${lang}`}/${menuItem.destination.slug}`;
 
-            className="nav-link-text"
-          >
-            {menuItem.labelText}
-          </Link>
-        </li>
-      ))}
+        return (
+          <li key={menuItem.originalId} className="nav-link-item">
+            <Link to={linkDestination} className="nav-link-text">
+              {menuItem.labelText}
+            </Link>
+          </li>
+        );
+      })}
     </ul>
   );
 };
+
 
 export default Menu;

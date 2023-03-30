@@ -3,8 +3,7 @@ import { graphql } from "gatsby";
 import Layout from '../../components/layout';
 import '../../styles/product.scss';
 
-const ProductTemplate = props => {
-    
+const ProductTemplate = props => {    
     return (
         <Layout pageTitle={props.data.datoCmsProduct.title}>
             <div className="product-item">

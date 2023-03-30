@@ -1,10 +1,10 @@
 import * as React from 'react';
-import Layout from '../../components/layout';
-import Seo from '../../components/seo';
+import Layout from '../components/layout';
+import Seo from '../components/seo';
 import { graphql } from 'gatsby';
-import { ContactForm } from '../../components/contactForm';
-import '../../styles/style.scss';
-import '../../styles/contacts.scss';
+import { ContactForm } from '../components/contactForm';
+import '../styles/style.scss';
+import '../styles/contacts.scss';
 
 const ContactsPage = props => { 
     return (

@@ -14,8 +14,8 @@ const Layout = ({ pageTitle, children }) => {
   
   React.useEffect(() => {
     const pathname = location.pathname;
+    console.log(pathname)
     setNewPathname(pathname.split('/')[1]);
-    console.log(pathname.split('/')[1])
   }, [location.pathname]);
   
   return (
@@ -33,7 +33,7 @@ const Layout = ({ pageTitle, children }) => {
           </nav>
 
           <div>
-            <LanguageSwitcher currentLocale={location.pathname} />
+            <LanguageSwitcher currentLocale={newPathname} />
           </div>
         </div>
       </header>
@@ -59,7 +59,7 @@ const Layout = ({ pageTitle, children }) => {
           </nav>
 
           <div>
-            <LanguageSwitcher currentLocale={location.pathname} />
+            <LanguageSwitcher currentLocale={newPathname} />
           </div>
         </div>
       </footer>

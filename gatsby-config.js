@@ -6,8 +6,10 @@ module.exports = {
   siteMetadata: {
     title: `Ross-Store`,
     siteUrl: `https://www.yourdomain.tld`,
+    defaultLanguage: 'en',
+    langs: ["en", "uk"],
   },
-  pathPrefix: '/',
+  pathPrefix: '/en',
   plugins: [
     "gatsby-plugin-image",
     "gatsby-plugin-sharp",
@@ -17,8 +19,12 @@ module.exports = {
     {
       resolve: "gatsby-source-datocms",
       options: {
-        lang: "en",
         apiToken: process.env.API_KEY,
+        preview: false,
+        localeFallbacks: {
+          en: ['en'],
+          uk: ['uk', 'en'],
+        },
       },
     },
     {

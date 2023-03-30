@@ -8,7 +8,8 @@ import '../../styles/catalog.scss';
 const CatalogPage = ({data}) => {
   const { pathname } = useLocation();
 
-  const lang = pathname.startsWith("/en/") ? "en" : "uk";
+  const lang = pathname.startsWith("/uk/") ? "uk" : "en";
+  console.log(lang)
 
   return (
     <Layout pageTitle="Каталог">
@@ -16,7 +17,7 @@ const CatalogPage = ({data}) => {
         <div className='catalog-wrapper'>
           {data.allDatoCmsProduct.nodes.map(productItem => (
               <article key={productItem.id} className="product-item">
-                  <Link to={`/${lang}/catalog/${productItem.slug}`} className="nav-link-text"></Link>
+                  <Link to={`/${lang === "en" ? "" : lang}/catalog/${productItem.slug}`} className="nav-link-text"></Link>
                   
                   <h2>
                     {productItem.title}

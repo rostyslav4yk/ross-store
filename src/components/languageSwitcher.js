@@ -2,6 +2,8 @@ import * as React from 'react';
 import { Link } from 'gatsby';
 import { useLocation } from '@reach/router';
 
+
+
 const LanguageSwitcher = ({ currentLocale }) => {
   const location = useLocation();
   const [newPathname, setNewPathname] = React.useState('');
@@ -9,25 +11,25 @@ const LanguageSwitcher = ({ currentLocale }) => {
   React.useEffect(() => {
     const pathname = location.pathname;
     setNewPathname(pathname.replace(/^\/(en|uk)\//, ''));
+    console.log()
   }, [location.pathname]);
-
 
   return (
     <ul className="language">
       <li>
         <Link
-          to={`/en/${newPathname}`}
+          to={`/${newPathname}`}
           language="en"
-          className={currentLocale === '/en/' ? 'active' : ''}
+          className={currentLocale === '' ? 'active' : ''}
         >
           English
         </Link>
       </li>
       <li>
         <Link
-          to={`/uk/${newPathname}`}
+          to={`/uk${newPathname}`}
           language="uk"
-          className={currentLocale === '/uk/' ? 'active' : ''}
+          className={location.pathname.startsWith('/uk/') ? 'active' : ''}
         >
           Українська
         </Link>
