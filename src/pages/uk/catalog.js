@@ -2,14 +2,9 @@ import * as React from 'react';
 import Layout from '../../components/layout';
 import { graphql, Link  } from 'gatsby';
 import Seo from '../../components/seo';
-import { useLocation } from '@reach/router';
 import '../../styles/catalog.scss';
 
 const CatalogPage = ({data}) => {
-  const { pathname } = useLocation();
-
-  const lang = pathname.startsWith("/uk/") ? "uk" : "en";
-  console.log(lang)
 
   return (
     <Layout pageTitle="Каталог">

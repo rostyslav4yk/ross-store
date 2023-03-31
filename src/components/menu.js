@@ -34,6 +34,17 @@ const Menu = () => {
 
   const menuItems = lang === "en" ? data.enMenu.menuItems : data.ukMenu.menuItems;
 
+  React.useEffect(() => {
+    const links = document.querySelectorAll('.nav-link-text');
+    links.forEach(link => {
+      if (link.getAttribute('href') === pathname) {
+        link.classList.add('active');
+      } else {
+        link.classList.remove('active');
+      }
+    });
+  }, [pathname]);
+
   return (
     <ul className="nav-links">
       {menuItems.map((menuItem) => {
@@ -55,6 +66,5 @@ const Menu = () => {
     </ul>
   );
 };
-
 
 export default Menu;

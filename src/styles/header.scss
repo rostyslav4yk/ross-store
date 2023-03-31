@@ -29,5 +29,16 @@ header {
     color: black;
     font-size: 18px;
     transition: .3s;
+
+    &.active {
+      color: rebeccapurple;
+      cursor: default;
+      pointer-events: none;
+      text-decoration: none;
+    }
+
+    &:hover {
+      color: rebeccapurple;
+    }
   }
 }

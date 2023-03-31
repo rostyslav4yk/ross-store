@@ -22,7 +22,7 @@ const Layout = ({ pageTitle, children }) => {
       <header>
         <div className="container">
           <div>
-            <Link to={`${newPathname}`} className="logo">
+            <Link to={`${location.pathname.startsWith("/uk/") ? "uk" : ""}`} className="logo">
               <StaticImage alt="Logo" src="../images/logo.png" />
             </Link>
           </div>
@@ -48,7 +48,7 @@ const Layout = ({ pageTitle, children }) => {
       <footer>
         <div className="container">
           <div>
-            <Link to={`${newPathname}`} className="logo">
+            <Link to={`${location.pathname.startsWith("/uk/") ? "uk" : ""}`} className="logo">
               <StaticImage alt="Logo" src="../images/logo.png" />
             </Link>
           </div>
