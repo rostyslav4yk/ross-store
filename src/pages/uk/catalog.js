@@ -17,7 +17,7 @@ const CatalogPage = ({data}) => {
         <div className='catalog-wrapper'>
           {data.allDatoCmsProduct.nodes.map(productItem => (
               <article key={productItem.id} className="product-item">
-                  <Link to={`/${lang === "en" ? "" : lang}/catalog/${productItem.slug}`} className="nav-link-text"></Link>
+                  <Link to={`/uk/catalog/${productItem.slug}`} className="nav-link-text"></Link>
                   
                   <h2>
                     {productItem.title}
