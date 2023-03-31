@@ -14,7 +14,6 @@ const Layout = ({ pageTitle, children }) => {
   
   React.useEffect(() => {
     const pathname = location.pathname;
-    console.log(pathname)
     setNewPathname(pathname.split('/')[1]);
   }, [location.pathname]);
   
