@@ -7,22 +7,24 @@ import '../styles/style.scss';
 import '../styles/contacts.scss';
 
 const ContactsPage = props => { 
+    const result = props.data.datoCmsContactPage;
+
     return (
-        <Layout pageTitle={props.data.datoCmsContactPage.title}>
+        <Layout pageTitle={result.title}>
             <div className="contact-wrapper">
                 <div>
                     <p>
-                        {props.data.datoCmsContactPage.phoneTitle}
+                        {result.phoneTitle}
                     </p>
 
-                    <a href={`tel:${props.data.datoCmsContactPage.phoneNumber}`}>
-                        {props.data.datoCmsContactPage.phoneNumber}
+                    <a href={`tel:${result.phoneNumber}`}>
+                        {result.phoneNumber}
                     </a>
                 </div>
 
                 <div>
                     <p>
-                        {props.data.datoCmsContactPage.contactText}
+                        {result.contactText}
                     </p>
                     <ContactForm />
                 </div>

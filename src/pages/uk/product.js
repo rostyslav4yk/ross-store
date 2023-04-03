@@ -3,28 +3,30 @@ import { graphql } from "gatsby";
 import Layout from '../../components/layout';
 import '../../styles/product.scss';
 
-const ProductTemplate = props => {    
+const ProductTemplate = props => {
+    const result = props.data.datoCmsProduct;
+
     return (
-        <Layout pageTitle={props.data.datoCmsProduct.title}>
+        <Layout pageTitle={result.title}>
             <div className="product-item">
                 <img
-                    alt={props.data.datoCmsProduct.image.alt}
-                    src={props.data.datoCmsProduct.image.url}
+                    alt={result.image.alt}
+                    src={result.image.url}
                 />
 
                 <p className="price">
-                    {props.data.datoCmsProduct.priceTitle}
+                    {result.priceTitle}
                     <span>
-                        {props.data.datoCmsProduct.price}
+                        {result.price}
                     </span>
                 </p>
 
                 <h4>
-                    {props.data.datoCmsProduct.descriptionTitle}
+                    {result.descriptionTitle}
                 </h4>
 
                 <p>
-                    {props.data.datoCmsProduct.description}
+                    {result.description}
                 </p>
             </div>
         </Layout>
