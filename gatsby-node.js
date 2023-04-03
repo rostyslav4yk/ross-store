@@ -23,7 +23,6 @@ exports.createPages = async ({ graphql, actions }) => {
   
       // Check if the language is the default language
       if (locale === "en") {
-        // Set the path to just "/catalog/:slug" for English pages
         pagePath = `/catalog/${node.slug}`;
         createPage({
           path: pagePath,
@@ -33,8 +32,7 @@ exports.createPages = async ({ graphql, actions }) => {
           },
         });
       } else {
-        // Set the path to `/:locale/catalog/:slug` for other languages
-        const countryCode = locale.slice(2); // extract the country code from the locale
+        const countryCode = locale.slice(2);
         pagePath = `/${countryCode}${pagePath}`;
         createPage({
           path: pagePath,
