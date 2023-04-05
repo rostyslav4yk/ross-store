@@ -1,9 +1,10 @@
 import React from "react";
 import { graphql } from "gatsby";
 import Layout from '../components/layout';
+import '../styles/product.scss';
 
-const ProductTemplate = props => {
-    const result = props.data.datoCmsProduct;
+const ProductTemplate = ({ data }) => {
+    const { datoCmsProduct: result } = data;
 
     return (
         <Layout pageTitle={result.title}>
@@ -49,4 +50,4 @@ export const query = graphql`
     }
 `
 
-export default ProductTemplate
+export default ProductTemplate;

@@ -41,7 +41,7 @@ const LanguageSwitcher = () => {
                 : `/${language}${newPathname}`
             }
             language={language}
-            // className={location.pathname.startsWith(`/${language}/`) || (location.pathname === '/' && language === 'uk') ? 'active' : ''}
+            className={(language !== 'en' && location.pathname.startsWith(`/${language}/`)) || (language === 'uk' && location.pathname === '/') ? 'active' : ''}
           >
             {language.toUpperCase()}
           </Link>
@@ -50,6 +50,5 @@ const LanguageSwitcher = () => {
     </ul>
   );
 };
-
 
 export default LanguageSwitcher;

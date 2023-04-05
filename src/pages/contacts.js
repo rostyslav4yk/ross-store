@@ -6,8 +6,8 @@ import { ContactForm } from '../components/contactForm';
 import '../styles/style.scss';
 import '../styles/contacts.scss';
 
-const ContactsPage = props => { 
-    const result = props.data.datoCmsContactPage;
+const ContactsPage = ({ data }) => { 
+    const { datoCmsContactPage: result } = data;
 
     return (
         <Layout pageTitle={result.title}>
