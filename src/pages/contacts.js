@@ -3,15 +3,23 @@ import Layout from '../components/layout';
 import Seo from '../components/seo';
 import { graphql } from 'gatsby';
 import { ContactForm } from '../components/contactForm';
-import '../styles/style.scss';
-import '../styles/contacts.scss';
+import styled from "styled-components";
 
 const ContactsPage = ({ data }) => { 
+    const ContactWrapper = styled.div`
+        display: flex;
+        justify-content: space-between;
+
+        & > div {
+            width: calc(50% - 15px);
+        }
+    `
+
     const { datoCmsContactPage: result } = data;
 
     return (
         <Layout pageTitle={result.title}>
-            <div className="contact-wrapper">
+            <ContactWrapper>
                 <div>
                     <p>
                         {result.phoneTitle}
@@ -28,7 +36,7 @@ const ContactsPage = ({ data }) => {
                     </p>
                     <ContactForm />
                 </div>
-            </div>
+            </ContactWrapper>
         </Layout>
     )
 }

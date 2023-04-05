@@ -3,10 +3,8 @@ import { StaticImage } from 'gatsby-plugin-image';
 import Link from './link';
 import LanguageSwitcher from './languageSwitcher';
 import Menu from './menu';
-import '../styles/style.scss';
-import '../styles/header.scss';
-import '../styles/footer.scss';
 import { useLocation } from '@reach/router';
+import GlobalStyle from '../GlobalStyles';
 
 const Layout = ({ pageTitle, children }) => {
   const location = useLocation();
@@ -18,7 +16,8 @@ const Layout = ({ pageTitle, children }) => {
   }, [location.pathname]);
   
   return (
-    <div>
+    <>
+      <GlobalStyle />
       <header>
         <div className="container">
           <div>
@@ -62,7 +61,7 @@ const Layout = ({ pageTitle, children }) => {
           </div>
         </div>
       </footer>
-    </div>
+    </>
   );
 };
 
