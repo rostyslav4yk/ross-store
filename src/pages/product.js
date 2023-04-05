@@ -33,8 +33,8 @@ const ProductTemplate = props => {
 }
 
 export const query = graphql`
-    query ProductQuery($productId: String) {
-        datoCmsProduct(locale: "en", originalId: {eq: $productId}) {
+    query ProductQuery($productId: String, $locale: String) {
+        datoCmsProduct(locale: $locale, originalId: {eq: $productId}) {
             title
             image {
                 url

@@ -34,8 +34,8 @@ const ContactsPage = props => {
 }
 
 export const query = graphql`   
-    query ContactQuery {
-        datoCmsContactPage(locale: "en") {
+    query ContactQuery($locale: String) {
+        datoCmsContactPage(locale: $locale) {
             title
             contactText
             phoneTitle

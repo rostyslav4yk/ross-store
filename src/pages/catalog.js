@@ -4,14 +4,21 @@ import { graphql, Link } from 'gatsby';
 import Seo from '../components/seo';
 import '../styles/catalog.scss';
 
-const CatalogPage = ({data}) => {
+const CatalogPage = ({data, pageContext}) => {
+    const { locale } = pageContext;
+    console.log(locale)
+
     return (
       <Layout pageTitle="Catalog">
         <div className="container"> 
           <div className='catalog-wrapper'>
             {data.allDatoCmsProduct.nodes.map(productItem => (
                 <article key={productItem.id} className="product-item">
-                    <Link to={`/catalog/${productItem.slug}`} className="nav-link-text"></Link>
+                    <Link 
+                      to={locale && locale !== 'en' ? `/${locale}/catalog/${productItem.slug}` : `/catalog/${productItem.slug}`} 
+                      className="nav-link-text">
+                    </Link>
+
                     
                     <h2>
                       {productItem.title}
@@ -27,7 +34,7 @@ const CatalogPage = ({data}) => {
                     />
 
                     <p className="price"> 
-                      Price 
+                      {productItem.priceTitle} 
 
                       <span>
                         ${productItem.price}
@@ -42,13 +49,14 @@ const CatalogPage = ({data}) => {
 }
 
 export const query = graphql`
-{
-  allDatoCmsProduct(locale: "en") {
+query($locale: String) {
+  allDatoCmsProduct(locale: $locale) {
     nodes {
       id
       originalId
       title
       slug
+      priceTitle
       price
       locales
       image {
