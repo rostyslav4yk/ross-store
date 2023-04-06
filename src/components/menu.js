@@ -6,44 +6,27 @@ import { Link } from 'gatsby-link';
 const Menu = () => {
   const { pathname } = useLocation();
 
-  const lang = pathname.startsWith("/uk/") ? "uk" : "en";
-  const isHomePage = pathname === `/${lang}/` || pathname === `/${lang}/index`;
+  const currentLocale = !pathname.startsWith('/en/') ? 'en' : pathname.split('/')[1];
+
+  const isHomePage = pathname === `/${currentLocale}/` || pathname === `/${currentLocale}/index`;
 
   const data = useStaticQuery(graphql`
-    {
-      enMenu: datoCmsMenu(locale: "en") {
+    query MyQuery($locale: String) {
+      datoCmsMenu(locale: $locale) {
         menuItems {
           labelText
-          originalId
           destination {
             slug
-          }
-        }
-      }
-      ukMenu: datoCmsMenu(locale: "uk") {
-        menuItems {
-          labelText
-          originalId
-          destination {
-            slug
+            originalId
           }
         }
       }
     }
-  `);
+  `, {
+    variables: { locale: "uk" },
+  });
 
-  const menuItems = lang === "en" ? data.enMenu.menuItems : data.ukMenu.menuItems;
-
-  React.useEffect(() => {
-    const links = document.querySelectorAll('.nav-link-text');
-    links.forEach(link => {
-      if (link.getAttribute('href') === pathname) {
-        link.classList.add('active');
-      } else {
-        link.classList.remove('active');
-      }
-    });
-  }, [pathname]);
+  const menuItems = data.datoCmsMenu.menuItems;
 
   return (
     <ul className="nav-links">
@@ -51,9 +34,9 @@ const Menu = () => {
         const linkDestination =
           menuItem.destination.slug === "index"
             ? isHomePage
-              ? `/${lang}/`
-              : `${lang === "en" ? "" : `/${lang}`}/`
-            : `${lang === "en" ? "" : `/${lang}`}/${menuItem.destination.slug}`;
+              ? `/${currentLocale}/`
+              : `${currentLocale === "en" ? "" : `/${currentLocale}`}/`
+            : `${currentLocale === "en" ? "" : `/${currentLocale}`}/${menuItem.destination.slug}`;
 
         return (
           <li key={menuItem.originalId} className="nav-link-item">
