@@ -2,53 +2,53 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import styled from "styled-components";
 
+const Button = styled.button`
+    padding: 10px 25px;
+    border: 1px solid rebeccapurple;
+    color: rebeccapurple;
+    border-radius: 5px;
+    font-size: 16px;
+
+    &:hover {
+        background: rebeccapurple;
+        color: #fff;
+    }
+`
+
+const FormWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+`
+
+const Form = styled.form`
+    & > div {
+        margin-bottom: 15px;
+    }
+`
+
+const Label = styled.label`
+    display: block;
+`
+
+const Input = styled.input`
+    padding: 10px 25px;
+    border: 1px solid rebeccapurple;
+    color: rebeccapurple;
+    border-radius: 5px;
+    width: 100%;
+`
+
+const TextArea = styled.input`
+    padding: 10px 25px;
+    border: 1px solid rebeccapurple;
+    color: rebeccapurple;
+    border-radius: 5px;
+    width: 100%;
+    resize: none;
+    height: 300px;
+`
+
 export function ContactForm() {
-
-    const Button = styled.button`
-        padding: 10px 25px;
-        border: 1px solid rebeccapurple;
-        color: rebeccapurple;
-        border-radius: 5px;
-        font-size: 16px;
-
-        &:hover {
-            background: rebeccapurple;
-            color: #fff;
-        }
-    `
-
-    const FormWrapper = styled.div`
-        display: flex;
-        flex-direction: column;
-    `
-
-    const Form = styled.form`
-        & > div {
-            margin-bottom: 15px;
-        }
-    `
-
-    const Label = styled.label`
-        display: block;
-    `
-
-    const Input = styled.input`
-        padding: 10px 25px;
-        border: 1px solid rebeccapurple;
-        color: rebeccapurple;
-        border-radius: 5px;
-        width: 100%;
-    `
-
-    const TextArea = styled.input`
-        padding: 10px 25px;
-        border: 1px solid rebeccapurple;
-        color: rebeccapurple;
-        border-radius: 5px;
-        width: 100%;
-        resize: none;
-        height: 300px;
-    `
 
     const { register, handleSubmit, formState: { errors } } = useForm();
 
@@ -57,7 +57,7 @@ export function ContactForm() {
     }
 
     return (
-        <FormWrapper>
+        <FormWrapper key="form-wrapper">
             <Form onSubmit={handleSubmit(onSubmit)}>
                 <div>
                     <Label htmlFor="name">

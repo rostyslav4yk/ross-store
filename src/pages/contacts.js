@@ -1,19 +1,19 @@
 import * as React from 'react';
 import Layout from '../components/layout';
-import Seo from '../components/seo';
 import { graphql } from 'gatsby';
 import { ContactForm } from '../components/contactForm';
 import styled from "styled-components";
 
-const ContactsPage = ({ data }) => { 
-    const ContactWrapper = styled.div`
-        display: flex;
-        justify-content: space-between;
+const ContactWrapper = styled.div`
+    display: flex;
+    justify-content: space-between;
 
-        & > div {
-            width: calc(50% - 15px);
-        }
-    `
+    & > div {
+        width: calc(50% - 15px);
+    }
+`
+
+const ContactsPage = ({ data }) => { 
 
     const { datoCmsContactPage: result } = data;
 
@@ -55,7 +55,5 @@ export const query = graphql`
         }
     }
 `
-
-export const Head = () => <Seo title="Contacts" />
 
 export default ContactsPage;

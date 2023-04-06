@@ -1,53 +1,52 @@
 import * as React from 'react';
 import Layout from '../components/layout';
 import { graphql, Link } from 'gatsby';
-import Seo from '../components/seo';
 import styled from "styled-components";
 
+const CatalogWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+`
+
+const Article = styled.article`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: calc(33.333333% - 5px);
+  position: relative;
+  margin-bottom: 20px;
+  padding: 15px 10px;
+  box-sizing: border-box;
+  box-shadow: 0px 0px 16px 0px rgba(0,0,0,0.75);
+  border-radius: 5px;
+
+  a:after {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+`
+
+const ProductImage = styled.img`
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+  display: block;
+  margin-bottom: 10px;
+`
+
+const PriceSpan = styled.span`
+  margin-left: 5px;
+  font-size: 18px;
+  font-weight: bold;
+`
+
 const CatalogPage = ({ data, pageContext }) => {
-  const CatalogWrapper = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  `
-
-  const Article = styled.article`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    max-width: calc(33.333333% - 5px);
-    position: relative;
-    margin-bottom: 20px;
-    padding: 15px 10px;
-    box-sizing: border-box;
-    box-shadow: 0px 0px 16px 0px rgba(0,0,0,0.75);
-    border-radius: 5px;
-
-    a:after {
-      position: absolute;
-      content: '';
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-    }
-  `
-
-  const ProductImage = styled.img`
-    width: 100%;
-    height: 200px;
-    object-fit: contain;
-    display: block;
-    margin-bottom: 10px;
-  `
-
-  const PriceSpan = styled.span`
-    margin-left: 5px;
-    font-size: 18px;
-    font-weight: bold;
-  `
-
   const { locale } = pageContext;
   const { allDatoCmsProduct } = data;
 
@@ -91,7 +90,5 @@ export const query = graphql`
     }
   }
 `;
-
-export const Head = () => <Seo title="Catalog" />;
 
 export default CatalogPage;

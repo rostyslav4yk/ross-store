@@ -8,19 +8,11 @@ const Menu = () => {
 
   const lang = pathname.startsWith("/uk/") ? "uk" : "en";
   const isHomePage = pathname === `/${lang}/` || pathname === `/${lang}/index`;
+  console.log(lang)
 
   const data = useStaticQuery(graphql`
-    {
-      enMenu: datoCmsMenu(locale: "en") {
-        menuItems {
-          labelText
-          originalId
-          destination {
-            slug
-          }
-        }
-      }
-      ukMenu: datoCmsMenu(locale: "uk") {
+    query MyQuery($locale: String) {
+      datoCmsMenu(locale: $locale) {
         menuItems {
           labelText
           originalId
@@ -30,9 +22,9 @@ const Menu = () => {
         }
       }
     }
-  `);
+  `, { variables: { locale: lang } })
 
-  const menuItems = lang === "en" ? data.enMenu.menuItems : data.ukMenu.menuItems;
+  const menuItems = data.datoCmsMenu.menuItems
 
   React.useEffect(() => {
     const links = document.querySelectorAll('.nav-link-text');
