@@ -1,6 +1,7 @@
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
 
+  // Get all DatoCMS products and pages
   const result = await graphql(`
     query {
       allDatoCmsProduct {
@@ -12,40 +13,6 @@ exports.createPages = async ({ graphql, actions }) => {
           slug
         }
       }
-    }
-  `);
-
-  result.data.allDatoCmsProduct.nodes.forEach(node => {
-    node.locales.forEach(locale => {
-      if (locale === "en") {
-        const pagePath = `/catalog/${node.slug}`;
-
-        createPage({
-          path: pagePath,
-          component: require.resolve(`./src/pages/product.js`),
-          context: {
-            productId: node.originalId,
-            locale: locale,
-          },
-        });
-      } else {
-        const pagePath = `/${locale}/catalog/${node.slug}`;
-
-        createPage({
-          path: pagePath,
-          component: require.resolve(`./src/pages/product.js`),
-          context: {
-            productId: node.originalId,
-            locale: locale,
-          },
-        });
-      }
-    });
-  });
-
-  // Create pages for other content
-  const pageResult = await graphql(`
-    query {
       allDatoCmsPage {
         nodes {
           locales
@@ -56,19 +23,33 @@ exports.createPages = async ({ graphql, actions }) => {
     }
   `);
 
-  pageResult.data.allDatoCmsPage.nodes.forEach(node => {
-    node.locales.forEach(locale => {
-      if (locale === "en") {
-        return;
-      }
+  const { defaultLocale } = require("./gatsby-config").plugins.find(
+    plugin => plugin.resolve === "gatsby-source-datocms"
+  ).options;
 
-      let pagePath = "";
-      if (node.slug === "index") {
-        pagePath = `/${locale}/`;
-      } else {
-        pagePath = `/${locale}/${node.slug}`;
-      }
-  
+  // Create pages for each product
+  result.data.allDatoCmsProduct.nodes.forEach(node => {
+    const slug = node.slug;
+    node.locales.forEach(locale => {
+      const pagePath = `${locale === defaultLocale ? `/catalog/${slug}` : `/${locale}/catalog/${slug}`}`;
+
+      createPage({
+        path: pagePath,
+        component: require.resolve(`./src/pages/product.js`),
+        context: {
+          productId: node.originalId,
+          locale: locale,
+        },
+      });
+    });
+  });
+
+  // Create pages for each page
+  result.data.allDatoCmsPage.nodes.forEach(node => {
+    node.locales.forEach(locale => {
+      let pagePath = node.slug === "index" ? "/" : `/${node.slug}`;
+      pagePath = locale === defaultLocale ? pagePath : `/${locale}${pagePath}`;
+
       createPage({
         path: pagePath,
         component: require.resolve(`./src/pages/${node.slug}.js`),
@@ -79,5 +60,14 @@ exports.createPages = async ({ graphql, actions }) => {
       });
     });
   });
-  
 };
+
+exports.onCreateWebpackConfig = ({ actions }) => {
+  actions.setWebpackConfig({
+    resolve: {
+      fallback: {
+        path: require.resolve("path-browserify"),
+      },
+    },
+  })
+}

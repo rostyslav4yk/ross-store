@@ -21,9 +21,9 @@ module.exports = {
         previewMode: false,
         disableLiveReload: false,
         localeFallbacks: {
-          uk: ['en'],
+          uk: ['uk'],
         },
-        previewMode: false,
+        defaultLocale: 'en',
       },
     },
     {
