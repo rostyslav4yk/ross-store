@@ -3,20 +3,22 @@ import { Link, graphql, useStaticQuery } from 'gatsby';
 import { useLocation } from '@reach/router';
 import '../styles/lang-switcher.scss';
 
-const LanguageSwitcher = () => {
+const LanguageSwitcher = ({ defaultLocale }) => {
   const location = useLocation();
   const [newPathname, setNewPathname] = React.useState('');
 
   React.useEffect(() => {
     const pathname = location.pathname;
-    const currentLocale = pathname.startsWith('/en/') ? 'en' : pathname.split('/')[1];
+    const currentLocale = pathname.startsWith(`/${defaultLocale}/`)
+      ? defaultLocale
+      : pathname.split('/')[1];
     
-    if (currentLocale === 'en') {
-      setNewPathname(pathname.replace(/^\/en\//, ''));
+    if (currentLocale === defaultLocale) {
+      setNewPathname(pathname.replace(`/${defaultLocale}/`, ''));
     } else {
       setNewPathname(pathname.replace(/^\/\w{2}\//, '/'));
     }
-  }, [location.pathname]);
+  }, [defaultLocale, location.pathname]);
 
   const data = useStaticQuery(graphql`
     query {
@@ -36,12 +38,17 @@ const LanguageSwitcher = () => {
         <li key={language}>
           <Link
             to={
-              language === 'en'
+              language === defaultLocale
                 ? newPathname
                 : `/${language}${newPathname}`
             }
             language={language}
-            className={(language !== 'en' && location.pathname.startsWith(`/${language}/`)) || (language === 'uk' && location.pathname === '/') ? 'active' : ''}
+            className={
+              (language === defaultLocale && (location.pathname === newPathname || location.pathname === '/')) || 
+              (language !== defaultLocale && location.pathname.startsWith(`/${language}/`))
+                ? 'active' 
+                : ''
+            }
           >
             {language.toUpperCase()}
           </Link>

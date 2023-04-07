@@ -31,7 +31,7 @@ const Layout = ({ pageTitle, children }) => {
           </nav>
 
           <div>
-            <LanguageSwitcher currentLocale={newPathname} />
+            <LanguageSwitcher defaultLocale='en' />
           </div>
         </div>
       </header>
@@ -57,7 +57,7 @@ const Layout = ({ pageTitle, children }) => {
           </nav>
 
           <div>
-            <LanguageSwitcher currentLocale={newPathname} />
+            <LanguageSwitcher defaultLocale='en' />
           </div>
         </div>
       </footer>
