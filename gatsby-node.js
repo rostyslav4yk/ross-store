@@ -17,16 +17,29 @@ exports.createPages = async ({ graphql, actions }) => {
 
   result.data.allDatoCmsProduct.nodes.forEach(node => {
     node.locales.forEach(locale => {
-      const pagePath = locale !== "en" ? `/${locale}/catalog/${node.slug}` : `/catalog/${node.slug}`;
+      if (locale === "en") {
+        const pagePath = `/catalog/${node.slug}`;
 
-      createPage({
-        path: pagePath,
-        component: require.resolve(`./src/pages/product.js`),
-        context: {
-          productId: node.originalId,
-          locale: locale,
-        },
-      });
+        createPage({
+          path: pagePath,
+          component: require.resolve(`./src/pages/product.js`),
+          context: {
+            productId: node.originalId,
+            locale: locale,
+          },
+        });
+      } else {
+        const pagePath = `/${locale}/catalog/${node.slug}`;
+
+        createPage({
+          path: pagePath,
+          component: require.resolve(`./src/pages/product.js`),
+          context: {
+            productId: node.originalId,
+            locale: locale,
+          },
+        });
+      }
     });
   });
 
@@ -45,12 +58,13 @@ exports.createPages = async ({ graphql, actions }) => {
 
   pageResult.data.allDatoCmsPage.nodes.forEach(node => {
     node.locales.forEach(locale => {
+      if (locale === "en") {
+        return;
+      }
+
       let pagePath = "";
       if (node.slug === "index") {
-        pagePath = "/";
-        if (locale !== "en") {
-          pagePath = `/${locale}${pagePath}`;
-        }
+        pagePath = `/${locale}/`;
       } else {
         pagePath = `/${locale}/${node.slug}`;
       }

@@ -1,7 +1,26 @@
 import React from "react";
 import { graphql } from "gatsby";
 import Layout from '../components/layout';
-import '../styles/product.scss';
+import styled from "styled-components";
+
+const ProductPrice = styled.p`
+    text-align: center;
+    margin: 15px 0;
+
+    span {
+        margin-left: 5px;
+        font-size: 18px;
+        font-weight: bold;
+    }
+`
+
+const ProductImage = styled.img`
+    max-width: 500px;
+    max-height: 500px;
+    object-fit: cover;
+    margin: 0 auto;
+    display: block;
+`
 
 const ProductTemplate = ({ data }) => {
     const { datoCmsProduct: result } = data;
@@ -9,17 +28,17 @@ const ProductTemplate = ({ data }) => {
     return (
         <Layout pageTitle={result.title}>
             <div className="product-item">
-                <img
+                <ProductImage
                     alt={result.image.alt}
                     src={result.image.url}
                 />
 
-                <p className="price">
+                <ProductPrice>
                     {result.priceTitle}
                     <span>
                         {result.price}
                     </span>
-                </p>
+                </ProductPrice>
 
                 <h4>
                     {result.descriptionTitle}

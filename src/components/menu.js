@@ -5,13 +5,11 @@ import { Link } from 'gatsby-link';
 
 const Menu = () => {
   const { pathname } = useLocation();
-
   const lang = pathname.startsWith("/uk/") ? "uk" : "en";
   const isHomePage = pathname === `/${lang}/` || pathname === `/${lang}/index`;
-  console.log(lang)
 
   const data = useStaticQuery(graphql`
-    query MyQuery($locale: String) {
+    query($locale: String) {
       datoCmsMenu(locale: $locale) {
         menuItems {
           labelText
@@ -22,20 +20,9 @@ const Menu = () => {
         }
       }
     }
-  `, { variables: { locale: lang } })
+  `, { variables: { locale: lang } });
 
-  const menuItems = data.datoCmsMenu.menuItems
-
-  React.useEffect(() => {
-    const links = document.querySelectorAll('.nav-link-text');
-    links.forEach(link => {
-      if (link.getAttribute('href') === pathname) {
-        link.classList.add('active');
-      } else {
-        link.classList.remove('active');
-      }
-    });
-  }, [pathname]);
+  const menuItems = data.datoCmsMenu.menuItems;
 
   return (
     <ul className="nav-links">

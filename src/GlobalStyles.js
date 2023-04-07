@@ -72,6 +72,11 @@ const GlobalStyle = createGlobalStyle`
         font-weight: bold;
     }
 
+    h4 {
+        font-size: 18px;
+        font-weight: bold;
+    }
+
     header, footer {
         font-size: 1rem;
         color: gray;

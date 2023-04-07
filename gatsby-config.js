@@ -18,9 +18,10 @@ module.exports = {
       resolve: "gatsby-source-datocms",
       options: {
         apiToken: process.env.API_KEY,
+        previewMode: false,
+        disableLiveReload: false,
         localeFallbacks: {
-          en: ["en"],
-          uk: ["uk", "en"],
+          uk: ['en'],
         },
         previewMode: false,
       },
