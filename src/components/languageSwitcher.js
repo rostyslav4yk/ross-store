@@ -1,7 +1,38 @@
 import * as React from 'react';
 import { Link, graphql, useStaticQuery } from 'gatsby';
 import { useLocation } from '@reach/router';
-import '../styles/lang-switcher.scss';
+import styled from "styled-components";
+
+const LanguageList = styled.ul`
+  display: flex;
+  align-items: center;
+
+  li {
+    &:hover {
+      a {
+        color: rebeccapurple;
+      }
+    }
+
+    & + li {
+      margin-left: 0.5rem;
+    }
+  }
+
+  a {
+    text-decoration: none;
+    font-size: 0.75rem;
+    padding: 0.5rem;
+    color: #000;
+
+    &.active {
+      border: 1px solid rebeccapurple;
+      border-radius: 3px;
+      color: rebeccapurple;
+      pointer-events: none;
+    }
+  }
+`
 
 const LanguageSwitcher = ({ defaultLocale }) => {
   const location = useLocation();
@@ -33,7 +64,7 @@ const LanguageSwitcher = ({ defaultLocale }) => {
   const languages = data.allDatoCmsSite.nodes[0].locales;
 
   return (
-    <ul className="language">
+    <LanguageList>
       {languages.map((language) => (
         <li key={language}>
           <Link
@@ -54,7 +85,7 @@ const LanguageSwitcher = ({ defaultLocale }) => {
           </Link>
         </li>
       ))}
-    </ul>
+    </LanguageList>
   );
 };
 

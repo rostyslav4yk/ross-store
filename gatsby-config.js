@@ -5,7 +5,10 @@ require("dotenv").config({
 module.exports = {
   siteMetadata: {
     title: `Ross-Store`,
+    description: `Store with new shoes`,
     siteUrl: `https://www.yourdomain.tld`,
+    defaultLocale: "en",
+    languages: ["en", "uk"],
   },
   plugins: [
     "gatsby-plugin-image",
@@ -24,6 +27,7 @@ module.exports = {
           uk: ['uk'],
         },
         defaultLocale: 'en',
+        allLocales: true
       },
     },
     {

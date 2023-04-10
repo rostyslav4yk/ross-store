@@ -1,16 +1,30 @@
 import * as React from "react";
 import Layout from '../components/layout';
 import { Link } from 'gatsby';
+import { graphql } from "gatsby";
 
-const IndexPage = () => {
+const IndexPage = ({ data }) => {
+  const { datoCmsMainPage: result } = data;
   
   return (
-    <Layout pageTitle="Welcome to RoSS store">
+    <Layout pageTitle={result.title}>
       <div>
-        Move to out <Link to="/catalog">catalog</Link>
+        {/* {result.mainDescription.value} */}
+        Move to my <Link to="/catalog">catalog</Link>
       </div>
     </Layout>
   )
 }
+
+export const query = graphql`
+    query MainPage($locale: String) {
+      datoCmsMainPage(locale: $locale) {
+        title
+        mainDescription {
+          value
+        }
+      }
+    }
+`
 
 export default IndexPage
