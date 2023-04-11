@@ -55,7 +55,7 @@ const CatalogPage = ({ data, pageContext }) => {
       <CatalogWrapper>
         {allDatoCmsProduct.nodes.map(({ id, slug, title, originalId, image, price, priceTitle }) => (
           <Article key={id}>
-            <Link to={locale && locale !== 'en' ? `/${locale}/catalog/${slug}` : `/catalog/${slug}`} className="nav-link-text"></Link>
+            <Link to={locale && locale !== undefined ? `/${locale}/catalog/${slug}` : `/catalog/${slug}`} className="nav-link-text"></Link>
 
             <h2>{title}</h2>
             <p>{originalId}</p>

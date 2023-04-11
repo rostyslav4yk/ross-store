@@ -5,6 +5,7 @@ import LanguageSwitcher from './languageSwitcher';
 import Menu from './menu';
 import { useLocation } from '@reach/router';
 import GlobalStyle from '../GlobalStyles';
+import { graphql, useStaticQuery } from 'gatsby';
 
 const Layout = ({ pageTitle, children }) => {
   const location = useLocation();
@@ -14,6 +15,18 @@ const Layout = ({ pageTitle, children }) => {
     const pathname = location.pathname;
     setNewPathname(pathname.split('/')[1]);
   }, [location.pathname]);
+
+  const data = useStaticQuery(graphql`
+    query {
+      site {
+        siteMetadata {
+          defaultLocale
+        }
+      }
+    }
+  `);
+
+  const defaultLocale = data.site.siteMetadata.defaultLocale;
   
   return (
     <>
@@ -31,7 +44,7 @@ const Layout = ({ pageTitle, children }) => {
           </nav>
 
           <div>
-            <LanguageSwitcher defaultLocale='en' />
+            <LanguageSwitcher defaultLocale={defaultLocale} />
           </div>
         </div>
       </header>
@@ -57,7 +70,7 @@ const Layout = ({ pageTitle, children }) => {
           </nav>
 
           <div>
-            <LanguageSwitcher defaultLocale='en' />
+            <LanguageSwitcher defaultLocale={defaultLocale} />
           </div>
         </div>
       </footer>
