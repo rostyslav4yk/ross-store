@@ -17,16 +17,23 @@ const Layout = ({ pageTitle, children }) => {
   }, [location.pathname]);
 
   const data = useStaticQuery(graphql`
-    query {
-      site {
-        siteMetadata {
-          defaultLocale
-        }
+  query MyQuery {
+    site {
+      siteMetadata {
+        defaultLocale
+        languages
       }
     }
-  `);
+  }
+`);
 
   const defaultLocale = data.site.siteMetadata.defaultLocale;
+  const languages = data.site.siteMetadata.languages;
+  const currentLocale = location.pathname === '/' ? defaultLocale : location.pathname.split('/')[1];
+
+  // Check if currentLocale is in the languages array
+  const isCurrentLocaleValid = languages.includes(currentLocale);
+  const linkPath = currentLocale === defaultLocale ? '' : isCurrentLocaleValid ? `${currentLocale}` : '';
   
   return (
     <>
@@ -34,7 +41,7 @@ const Layout = ({ pageTitle, children }) => {
       <header>
         <div className="container">
           <div>
-            <Link to={`${location.pathname.startsWith("/uk/") ? "uk" : ""}`} className="logo">
+            <Link to={linkPath} className="logo">
               <StaticImage alt="Logo" src="../images/logo.png" />
             </Link>
           </div>
@@ -60,7 +67,7 @@ const Layout = ({ pageTitle, children }) => {
       <footer>
         <div className="container">
           <div>
-            <Link to={`${location.pathname.startsWith("/uk/") ? "uk" : ""}`} className="logo">
+            <Link to={linkPath} className="logo">
               <StaticImage alt="Logo" src="../images/logo.png" />
             </Link>
           </div>
