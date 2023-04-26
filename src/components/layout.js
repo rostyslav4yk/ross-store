@@ -41,7 +41,7 @@ const Layout = ({ pageTitle, children }) => {
       <header>
         <div className="container">
           <div>
-            <Link to={linkPath} className="logo">
+            <Link to={linkPath} className="logo" alt="logo">
               <StaticImage alt="Logo" src="../images/logo.png" />
             </Link>
           </div>
@@ -67,7 +67,7 @@ const Layout = ({ pageTitle, children }) => {
       <footer>
         <div className="container">
           <div>
-            <Link to={linkPath} className="logo">
+            <Link to={linkPath} className="logo" alt="logo">
               <StaticImage alt="Logo" src="../images/logo.png" />
             </Link>
           </div>

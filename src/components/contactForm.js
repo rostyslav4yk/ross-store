@@ -95,7 +95,7 @@ export function ContactForm() {
                     }
                 </div>
 
-                <Button type="submit">Submit</Button>
+                <Button type="submit" title="Submit">Submit</Button>
             </Form>
         </FormWrapper>
     );

@@ -20,7 +20,7 @@ const Menu = () => {
         }
       }
     }
-  `, { variables: { locale: lang } });
+  `, { variables: { locale: lang.toString() } });
 
   const menuItems = data.datoCmsMenu.menuItems;
 
@@ -36,7 +36,7 @@ const Menu = () => {
 
         return (
           <li key={menuItem.originalId} className="nav-link-item">
-            <Link to={linkDestination} className="nav-link-text">
+            <Link to={linkDestination} className="nav-link-text" title={menuItem.labelText}>
               {menuItem.labelText}
             </Link>
           </li>

@@ -10,7 +10,7 @@ const IndexPage = ({ data }) => {
     <Layout pageTitle={result.title}>
       <div>
         {/* {result.mainDescription.value} */}
-        Move to my <Link to="/catalog">catalog</Link>
+        Move to my <Link to="/catalog" title="catalog">catalog</Link>
       </div>
     </Layout>
   )

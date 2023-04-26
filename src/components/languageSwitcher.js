@@ -74,6 +74,7 @@ const LanguageSwitcher = ({ defaultLocale }) => {
                 : `/${language}${newPathname}`
             }
             language={language}
+            title={language}
             className={
               (language === defaultLocale && (location.pathname === newPathname || location.pathname === '/')) || 
               (language !== defaultLocale && location.pathname.startsWith(`/${language}/`))
